@@ -1,0 +1,50 @@
+{
+  "base_config": {
+    "env_name": "navigation",
+    "memory_config": {
+      "immediate_size": 32,
+      "short_term_size": 16,
+      "long_term_size": 8,
+      "embedding_dim": 128
+    },
+    "policy_config": {
+      "hidden_dim": 256,
+      "memory_dim": 128,
+      "continuous_actions": false
+    },
+    "training_config": {
+      "num_episodes": 60,
+      "eval_interval": 15,
+      "eval_episodes": 5,
+      "env_kwargs": {
+        "num_rooms": 9,
+        "room_size": [7, 7],
+        "max_steps": 3000,
+        "num_keys": 3
+      },
+      "exploration_kwargs": {
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "epsilon_decay": 0.995
+      },
+      "ppo_kwargs": {
+        "lr": 0.0003,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "value_clip_range": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "num_epochs": 4,
+        "batch_size": 128
+      }
+    }
+  },
+  "ablation_params": {
+    "memory_config.embedding_dim": [64, 128, 192],
+    "training_config.ppo_kwargs.lr": [0.0001, 0.0003],
+    "training_config.exploration_kwargs.epsilon_decay": [0.99, 0.995, 0.999]
+  },
+  "num_seeds": 3
+}

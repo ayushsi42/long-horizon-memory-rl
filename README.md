@@ -77,6 +77,22 @@ trainer = PPOTrainer(policy, memory)
 trainer.train(num_steps=1_000_000)
 ```
 
+## Experiment Runners
+
+- Run a full experiment across multiple seeds and export metrics:
+
+    ```bash
+    python scripts/run_experiment.py --config configs/crafting_experiment.json --seeds 0 1 2 --log-dir results --run-tag crafting_baseline
+    ```
+
+- Launch the built-in ablation harness and collect per-seed/summary tables:
+
+    ```bash
+    python scripts/run_ablation.py --config configs/ablation_example.json --log-dir results --run-tag navigation_ablation
+    ```
+
+Use `--override key=value` with either script to tweak specific configuration fields without editing the source JSON/TOML file (for example `--override training_config.num_episodes=50`).
+
 ## Benchmarks
 
 The implementation includes four main benchmark environments:
@@ -84,23 +100,3 @@ The implementation includes four main benchmark environments:
 2. Multi-Room Navigation with Keys (5,000+ step episodes)
 3. Sequential Decision Games (2,000+ step episodes)
 4. Procedural Story Generation (3,000+ step episodes)
-
-## Contributing
-
-Contributions are welcome! Please read our contributing guidelines before submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@article{hcmrl2024,
-  title={Hierarchical Compressed Memory for Long-Horizon Reinforcement Learning in Resource-Constrained Environments},
-  author={Singh, Ayush},
-  year={2024}
-}
-```

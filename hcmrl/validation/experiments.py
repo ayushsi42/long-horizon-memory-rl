@@ -3,6 +3,7 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import torch
 import wandb
+from gym import spaces
 from torch import Tensor
 
 from ..envs.crafting import CraftingEnv
